@@ -1,7 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ENV variables:
+- DB_USER: The database user
+- DB_PASSWORD: The database user's password
+- GOOGLE_MAPS_API_KEY: Necessary for conversion of addresses to latitude and longitude
+
+Ruby version: 3.2.2
+Rails version: 7.1.3.2
+Postgres version: 14.11
+
 
 Things you may want to cover:
 
