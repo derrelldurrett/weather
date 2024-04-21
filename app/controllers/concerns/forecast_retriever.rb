@@ -27,15 +27,18 @@ module ForecastRetriever
   private
   def look_up_forecast(lat_long_zip)
     points = [lat_long_zip.fetch(:latitude).round(4), lat_long_zip.fetch(:longitude).round(4)].join(',')
-    url = URI([FORECAST_ROOT_URL, points].join('/'))
+    url = URI([FORECAST_ROOT_URL, points].join(''))
+    puts "lat/lng to station: "+url.hostname
     intermediate = JSON.parse Net::HTTP.get(url, WEATHER_GOV_HEADERS)
     #check response and retry if status not 200...
     observation_stations_url = intermediate.dig('properties', 'observationStations')
     url = URI(observation_stations_url)
+    puts "observation stations: "+url.hostname
     observation_stations = JSON.parse Net::HTTP.get(url, WEATHER_GOV_HEADERS)
     #check response and retry if status not 200...
     observation_root_url = observation_stations.dig('observationStations', 0)
     url = URI([observation_root_url, 'observations/latest'].join('/'))
+    puts "latest observation: "+url.hostname
     observation = JSON.parse Net::HTTP.get(url, WEATHER_GOV_HEADERS)
     # check response and retry if status not 200
     #forecast_data =
