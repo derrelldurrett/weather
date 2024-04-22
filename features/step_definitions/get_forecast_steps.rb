@@ -9,6 +9,7 @@ When('I go to the root page') do
 end
 
 When('I enter a legitimate address') do
+  load_stubs_of_external_calls
   within '#forecast_address' do
     fill_in with: '1 Apple Park Way, Cupertino, California'
   end
