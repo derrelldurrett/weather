@@ -6,6 +6,7 @@ class ForecastsController < ApplicationController
   rescue_from NotSpecificLocationError, with: :not_a_specific_address
   rescue_from HttpRequestError, with: :http_request_error
   rescue_from NotALocationError, with: :not_a_location
+  rescue_from StandardError, with: :http_request_error
 
   def not_a_location(exception = nil)
     flash[:notice] = "Location not found: #{exception.message}"
@@ -19,6 +20,7 @@ class ForecastsController < ApplicationController
 
   def http_request_error(exception)
     flash[:notice] = "Bad request - giving up:\n#{exception.message}"
+    redirect_to '/'
   end
 
   # GET /forecasts/1 or /forecasts/1.json

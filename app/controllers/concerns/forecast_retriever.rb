@@ -29,7 +29,6 @@ module ForecastRetriever
 
   def build_forecast(lat_long_zip, forecast)
     forecast_data = look_up_forecast(lat_long_zip)
-    puts forecast_data.to_json
     forecast.zipcode = lat_long_zip.fetch(:zip)
     forecast.data = forecast_data.to_json
   end

@@ -20,12 +20,13 @@ module HttpAutoRetry
     delay = 1
     response = nil
     until retries == 0
+      puts request.to_s
       response = http.request(request)
       break if response.code == '200'
       retries -= 1
       sleep delay
     end
-    body = JSON.parse(response.body)
+    body = JSON.parse(response.body) unless response.nil?
     raise HttpRequestError.new(extract_message(response, body)) if response_error?(response, body)
     body
   end
