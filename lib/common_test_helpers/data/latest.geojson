@@ -76,7 +76,7 @@
         },
         "windDirection": {
             "unitCode": "wmoUnit:degree_(angle)",
-            "value": null,
+            "value": 37,
             "qualityControl": "Z"
         },
         "windSpeed": {

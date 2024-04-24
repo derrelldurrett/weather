@@ -1,10 +1,12 @@
 require 'rails_helper'
+require_relative '../../../lib/common_test_helpers/mocks_helper'
+include MocksHelper
 
 RSpec.describe "forecasts/edit", type: :view do
   let(:forecast) {
     Forecast.create!(
-      zipcode: 1,
-      data: "MyText"
+      zipcode: 95014,
+      data: forecast_data
     )
   }
 
@@ -17,7 +19,8 @@ RSpec.describe "forecasts/edit", type: :view do
 
     assert_select "form[action=?][method=?]", forecast_path(forecast), "post" do
 
-      assert_select "input[name=?]", "forecast[address]"
+      assert_select "input[name=?]", "commit"
+      assert_select "textarea[name=?]", "forecast[address]"
     end
   end
 end

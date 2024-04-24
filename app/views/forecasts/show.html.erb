@@ -1,4 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @forecast %>
+<div class="current_conditions">
 
+  <%= render @forecast, locals: { current_conditions: @current_conditions, future: @future } %>
+
+  <br>
+
+  <p>
+    <strong>Get a different forecast:</strong>
+    <br>
+    <%= render "form", forecast: Forecast.new %>
+  </p>
+</div>

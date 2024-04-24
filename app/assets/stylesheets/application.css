@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.current_conditions {
+    margin: 0 auto; /* Center the div horizontally */
+    width: 80%; /* Adjust the width as needed */
+    background-color: #f0f0f0; /* Example background color */
+    padding: 20px; /* Add padding for spacing */
+    border: 1px solid #ccc; /* Example border */
+}

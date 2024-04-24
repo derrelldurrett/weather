@@ -13,9 +13,8 @@ RSpec.describe "forecasts/new", type: :view do
 
     assert_select "form[action=?][method=?]", forecasts_path, "post" do
 
-      assert_select "input[name=?]", "forecast[zipcode]"
-
-      assert_select "textarea[name=?]", "forecast[data]"
+      assert_dom "label", "Address"
+      assert_select "input[name=?]", "commit"
     end
   end
 end

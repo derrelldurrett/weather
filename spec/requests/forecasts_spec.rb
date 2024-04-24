@@ -33,6 +33,8 @@ RSpec.describe "/forecasts", type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
+      let(:valid_attributes) { { "address" => "1 Apple Park Way, Cupertino, California" } }
+
       before do
         load_stubs_of_external_calls
       end
@@ -43,7 +45,7 @@ RSpec.describe "/forecasts", type: :request do
         }.to change(Forecast, :count).by(1)
       end
 
-      it "redirects to the created forecast" do
+      it "displays the created forecast" do
         post forecasts_url, params: { forecast: valid_attributes }
         expect(response).to redirect_to(forecast_url(Forecast.last))
       end

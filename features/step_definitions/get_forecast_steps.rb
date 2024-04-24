@@ -18,6 +18,8 @@ end
 
 Then('I receive the conditions for the address') do
   expect(page.status_code).to eq(200)
+  expect(page).to have_text('Current conditions for 95014')
+
 end
 
 

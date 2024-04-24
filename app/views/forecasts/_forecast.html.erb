@@ -1,12 +1,35 @@
 <div id="<%= dom_id forecast %>">
-  <p>
-    <strong>Zipcode:</strong>
-    <%= forecast.zipcode %>
-  </p>
 
-  <p>
-    <strong>Data:</strong>
-    <%= forecast.data %>
-  </p>
+  <div>
+    <strong>Current conditions for <%= forecast.zipcode %>:</strong>
+    <% if @current_conditions.present? or @current_conditions['conditions'] != '' %>
+      <br>
+      <% if forecast.cached %>
+        <p>From <%= time_ago_in_words @forecast.created_at %> ago</p>
+      <% end %>
+      <img src="<%= @current_conditions["icon"] %>" alt="Weather Icon">
+      <p><strong>Current Conditions:</strong> <%= @current_conditions["conditions"] %></p>
+      <p><strong>Temperature:</strong> <%= @current_conditions["temperature"] %> &deg;F</p>
+      <p><strong>Wind Speed:</strong> <%= @current_conditions["wind_speed"] %> mph</p>
+      <p><strong>Wind Direction:</strong> <%= @current_conditions["wind_direction"] %></p>
+    <% else %>
+      <p>No weather data available</p>
+    <% end %>
+  </div>
+  <div>
+    <strong>Forecast</strong>
+    <br>
+    <% @future.each do |p| %>
+      <div id="<%= p['identifier'] %>">
+      <p><%= p['name'] %></p>
+      <img src="<%= p["icon_url"] %>" alt="<%= p['name'] %>">
+      <p><strong>Temperature:</strong> <%= p['temperature'] %>°F</p>
+      <p><strong>Wind Speed:</strong> <%= p['wind_speed'] %></p>
+      <p><strong>Wind Direction:</strong> <%= p['wind_direction'] %></p>
+      <p><strong>Chance of Precipitation:</strong> <%= p['chance_of_precipitation'] %>%</p>
+      <p><strong>Forecast:</strong> <%= p['text'] %></p>
+      </div>
+    <% end %>
+  </div>
 
 </div>

@@ -1,16 +1,19 @@
 # frozen_string_literal: true
-MOCKS_DIR = Rails.root.join('features', 'support', 'data')
+MOCKS_DIR = Rails.root.join('lib', 'common_test_helpers', 'data')
 
 module MocksHelper
   def build_response_from(status, mock_response)
-    { status: status, body: File.open(MOCKS_DIR.join(mock_response).to_s).readlines.map(&:chomp).join.to_s }
+    { status: status, body: load_json_file(mock_response) }
+  end
+
+  def load_json_file(file_name)
+    File.open(MOCKS_DIR.join(file_name).to_s).readlines.map(&:chomp).join.to_s
   end
 
   def self.assign(name, &block)
     define_method(name, &block)
   end
 
-  assign(:valid_attributes) { { "address" => "1 Apple Park Way, Cupertino, California" } }
   assign(:mocks_dir) { Rails.root.join('features', 'support', 'data') }
   assign(:maps_response_file) { 'maps.googleapis.com.json' }
   assign(:maps_response) { build_response_from(200, maps_response_file) }
@@ -22,6 +25,8 @@ module MocksHelper
   assign(:stations_response) { build_response_from(200, stations_response_file) }
   assign(:observations_response_file) { 'latest.geojson' }
   assign(:observations_response) { build_response_from(200, observations_response_file) }
+  assign(:forecast_data_file) { '95014_forecast_data.json' }
+  assign(:forecast_data) { load_json_file(forecast_data_file) }
 end
 
 def load_stubs_of_external_calls
