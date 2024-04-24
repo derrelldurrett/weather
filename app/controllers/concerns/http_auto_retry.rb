@@ -20,7 +20,6 @@ module HttpAutoRetry
     delay = 1
     response = nil
     until retries == 0
-      puts request.to_s
       response = http.request(request)
       break if response.code == '200'
       retries -= 1

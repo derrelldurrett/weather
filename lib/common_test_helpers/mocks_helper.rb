@@ -34,6 +34,10 @@ def load_stubs_of_external_calls
   stub_request(:get, 'https://maps.googleapis.com/maps/api/geocode/json?address=1 Apple Park Way%2C Cupertino%2C California&key=not_a_real_key')
     .to_return(maps_response)
 
+  # mock maps.googleapi.com to return lat/long for a zipcode
+  stub_request(:get, 'https://maps.googleapis.com/maps/api/geocode/json?address=95014&key=not_a_real_key')
+    .to_return(maps_response)
+
   # mock call to weather.gov to get the weather.gov grid point containing the lat/long
   stub_request(:get, 'https://api.weather.gov/points/37.3294,-122.0084')
     .to_return(gridpoints_response)

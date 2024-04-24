@@ -16,6 +16,6 @@ RSpec.describe "forecasts/show", type: :view do
     render
     expect(rendered).to match(/Current conditions for 95014/)
     expect(rendered).to match(/Mostly Clear/)
-    expect(rendered).to match(/<strong>Temperature:<\/strong> 70 &deg;F/)
+    expect(rendered).to match(/<strong>Temperature:<\/strong> 70&deg;F/)
   end
 end
