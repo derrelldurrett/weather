@@ -39,15 +39,41 @@ RSpec.describe "/forecasts", type: :request do
         load_stubs_of_external_calls
       end
 
-      it "creates a new Forecast" do
-        expect {
+      context "no stored forecast for this location" do
+
+        it "creates a new Forecast" do
+          expect {
+            post forecasts_url, params: { forecast: valid_attributes }
+          }.to change(Forecast, :count).by(1)
+        end
+
+        it "displays the created forecast" do
           post forecasts_url, params: { forecast: valid_attributes }
-        }.to change(Forecast, :count).by(1)
+          expect(response).to redirect_to(forecast_url(Forecast.last))
+        end
       end
 
-      it "displays the created forecast" do
-        post forecasts_url, params: { forecast: valid_attributes }
-        expect(response).to redirect_to(forecast_url(Forecast.last))
+      context "with a cached forecast" do
+
+        before do
+          Timecop.freeze(cached_observation_time)
+          Forecast.build(zipcode: 95014, data: initial_forecast_data).save!
+        end
+
+        it " retrieves the cached forecast" do
+          expect {
+            post forecasts_url, params: { forecast: valid_attributes }
+          }.to change(Forecast, :count).by(0)
+        end
+
+        it "displays the created forecast" do
+          post forecasts_url, params: { forecast: valid_attributes }
+          expect(response).to redirect_to(forecast_url(Forecast.find_by(zipcode: 95014)))
+        end
+
+        after do
+          Timecop.return
+        end
       end
     end
 

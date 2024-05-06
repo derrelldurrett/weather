@@ -1,0 +1,165 @@
+{
+  "current_conditions": {
+    "conditions": "Mostly Clear",
+    "icon": "https://api.weather.gov/icons/land/day/few?size=medium",
+    "temperature": 69,
+    "wind_speed": 2,
+    "wind_direction": "NNE"
+  },
+  "forecast": [
+    {
+      "identifier": "Today1",
+      "name": "Today",
+      "is_daytime": true,
+      "temperature": 79,
+      "wind_speed": "3 to 10 mph",
+      "wind_direction": "SSE",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/day/skc?size=medium",
+      "text": "Sunny"
+    },
+    {
+      "identifier": "Tonight2",
+      "name": "Tonight",
+      "is_daytime": false,
+      "temperature": 50,
+      "wind_speed": "7 to 10 mph",
+      "wind_direction": "S",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/night/few?size=medium",
+      "text": "Mostly Clear"
+    },
+    {
+      "identifier": "Tuesday3",
+      "name": "Tuesday",
+      "is_daytime": true,
+      "temperature": 69,
+      "wind_speed": "8 to 13 mph",
+      "wind_direction": "SSE",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/day/sct?size=medium",
+      "text": "Mostly Sunny"
+    },
+    {
+      "identifier": "TuesdayNight4",
+      "name": "Tuesday Night",
+      "is_daytime": false,
+      "temperature": 50,
+      "wind_speed": "5 to 13 mph",
+      "wind_direction": "SSW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/night/bkn?size=medium",
+      "text": "Mostly Cloudy"
+    },
+    {
+      "identifier": "Wednesday5",
+      "name": "Wednesday",
+      "is_daytime": true,
+      "temperature": 69,
+      "wind_speed": "5 to 13 mph",
+      "wind_direction": "SW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/day/bkn?size=medium",
+      "text": "Partly Sunny"
+    },
+    {
+      "identifier": "WednesdayNight6",
+      "name": "Wednesday Night",
+      "is_daytime": false,
+      "temperature": 49,
+      "wind_speed": "6 to 13 mph",
+      "wind_direction": "W",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/night/sct?size=medium",
+      "text": "Partly Cloudy"
+    },
+    {
+      "identifier": "Thursday7",
+      "name": "Thursday",
+      "is_daytime": true,
+      "temperature": 66,
+      "wind_speed": "6 to 16 mph",
+      "wind_direction": "W",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/day/sct?size=medium",
+      "text": "Mostly Sunny"
+    },
+    {
+      "identifier": "ThursdayNight8",
+      "name": "Thursday Night",
+      "is_daytime": false,
+      "temperature": 50,
+      "wind_speed": "7 to 16 mph",
+      "wind_direction": "WNW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/night/bkn?size=medium",
+      "text": "Mostly Cloudy"
+    },
+    {
+      "identifier": "Friday9",
+      "name": "Friday",
+      "is_daytime": true,
+      "temperature": 67,
+      "wind_speed": "7 to 16 mph",
+      "wind_direction": "WNW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/day/bkn?size=medium",
+      "text": "Partly Sunny"
+    },
+    {
+      "identifier": "FridayNight10",
+      "name": "Friday Night",
+      "is_daytime": false,
+      "temperature": 48,
+      "wind_speed": "9 to 16 mph",
+      "wind_direction": "WNW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/night/sct?size=medium",
+      "text": "Partly Cloudy"
+    },
+    {
+      "identifier": "Saturday11",
+      "name": "Saturday",
+      "is_daytime": true,
+      "temperature": 69,
+      "wind_speed": "8 to 15 mph",
+      "wind_direction": "WNW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/day/few?size=medium",
+      "text": "Sunny"
+    },
+    {
+      "identifier": "SaturdayNight12",
+      "name": "Saturday Night",
+      "is_daytime": false,
+      "temperature": 49,
+      "wind_speed": "7 to 15 mph",
+      "wind_direction": "WNW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/night/few?size=medium",
+      "text": "Partly Cloudy"
+    },
+    {
+      "identifier": "Sunday13",
+      "name": "Sunday",
+      "is_daytime": true,
+      "temperature": 71,
+      "wind_speed": "7 to 14 mph",
+      "wind_direction": "WNW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/day/few?size=medium",
+      "text": "Sunny"
+    },
+    {
+      "identifier": "SundayNight14",
+      "name": "Sunday Night",
+      "is_daytime": false,
+      "temperature": 48,
+      "wind_speed": "6 to 14 mph",
+      "wind_direction": "WNW",
+      "chance_of_precipitation": 0,
+      "icon_url": "https://api.weather.gov/icons/land/night/few?size=medium",
+      "text": "Mostly Clear"
+    }
+  ]
+}

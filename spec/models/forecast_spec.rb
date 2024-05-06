@@ -6,7 +6,7 @@ RSpec.describe Forecast, type: :model do
   let(:forecast) {
     Forecast.create!(
       zipcode: 95014,
-      data: forecast_data
+      data: initial_forecast_data
     )
   }
 
@@ -18,6 +18,6 @@ RSpec.describe Forecast, type: :model do
   it "has forecast data" do
     expect(forecast.data).to_not be_nil
     expect(forecast.data).to be_a String
-    expect(forecast.data).to match(forecast_data)
+    expect(forecast.data).to match(initial_forecast_data)
   end
 end

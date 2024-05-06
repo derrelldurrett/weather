@@ -3,6 +3,14 @@ Given('the app is up') do
   expect(page.status_code).to eq(200)
 end
 
+Given('the time is less than thirty minutes after my most recent call') do
+  Timecop.freeze(cached_observation_time)
+end
+
+Given('a cached forecast exists for my zipcode') do
+  Forecast.build(zipcode: 95014, data: initial_forecast_data).save!
+end
+
 When('I go to the root page') do
   visit('/')
   expect(page).to have_text('Address')
@@ -16,14 +24,16 @@ When(/I enter a legitimate (address|zipcode): "([^"]*)"/) do |_type, address|
   click_on 'Get Forecast!'
 end
 
-Then(/I receive the conditions for the (address|zipcode)/) do |_type|
+Then(/I receive the observations for the (address|zipcode)/) do |_type|
   expect(page.status_code).to eq(200)
   expect(page).to have_text('Current conditions for 95014')
   expect(page).to have_text('Mostly Clear')
 end
 
+Then('I receive the cached observations for the zipcode') do
+  cached_forecast_expectations
+end
+
 Then(/I receive the forecast for the (address|zipcode)/) do |_type|
-  expect(page).to have_text('Mostly Clear')
-  expect(page).to have_text('70°F')
-  expect(page).to have_text('0%')
+  cached_forecast_expectations
 end
