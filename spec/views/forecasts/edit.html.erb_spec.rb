@@ -6,7 +6,7 @@ RSpec.describe "forecasts/edit", type: :view do
   let(:forecast) {
     Forecast.create!(
       zipcode: 95014,
-      data: forecast_data
+      data: initial_forecast_data
     )
   }
 
