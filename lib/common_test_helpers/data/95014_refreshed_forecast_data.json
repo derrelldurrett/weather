@@ -136,7 +136,7 @@
       "wind_speed": "7 to 15 mph",
       "wind_direction": "WNW",
       "chance_of_precipitation": 0,
-      "icon_url": "https://api.weather.gov/icons/land/night/few?size=medium",
+      "icon_url": "https://api.weather.gov/icons/land/night/sct?size=medium",
       "text": "Partly Cloudy"
     },
     {
