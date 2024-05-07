@@ -3,8 +3,9 @@ Given('the app is up') do
   expect(page.status_code).to eq(200)
 end
 
-Given('the time is less than thirty minutes after my most recent call') do
-  Timecop.freeze(cached_observation_time)
+Given(/the time is (less|more) than thirty minutes after my most recent call/) do |less_or_more|
+  less_or_more == 'less' ? Timecop.freeze(cached_observation_time) :
+    Timecop.freeze(refreshed_observation_time)
 end
 
 Given('a cached forecast exists for my zipcode') do
@@ -30,8 +31,9 @@ Then(/I receive the observations for the (address|zipcode)/) do |_type|
   expect(page).to have_text('Mostly Clear')
 end
 
-Then('I receive the cached observations for the zipcode') do
-  cached_forecast_expectations
+Then(/I receive the (cached|refreshed) observations for the zipcode/) do |cached_or_refreshed|
+  cached_or_refreshed == 'cached' ? cached_forecast_expectations :
+    refreshed_forecast_expectations
 end
 
 Then(/I receive the forecast for the (address|zipcode)/) do |_type|

@@ -10,3 +10,11 @@ Feature: Retrieve a cached version of the observations/forecast if it's not stal
     When I go to the root page
     And I enter a legitimate zipcode: "95014"
     Then I receive the cached observations for the zipcode
+
+  Scenario: A forecast exists for this zipcode in our database but it's more than thirty minutes old
+    Given the app is up
+    And the time is more than thirty minutes after my most recent call
+    And a cached forecast exists for my zipcode
+    When I go to the root page
+    And I enter a legitimate zipcode: "95014"
+    Then I receive the refreshed observations for the zipcode
