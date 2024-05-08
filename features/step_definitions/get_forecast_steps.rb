@@ -1,15 +1,29 @@
+Before('@initial or @cached or @refreshed') do
+  load_stubs_of_external_calls
+end
+
+Around('@initial') do |_scenario, block|
+  Timecop.freeze initial_observation_time
+  block.call
+  Timecop.return
+end
+
+After('@cached or @refreshed') do |_scenario|
+  Timecop.return
+end
+
 Given('the app is up') do
   visit('/up')
   expect(page.status_code).to eq(200)
 end
 
-Given(/the time is (less|more) than thirty minutes after my most recent call/) do |less_or_more|
-  less_or_more == 'less' ? Timecop.freeze(cached_observation_time) :
-    Timecop.freeze(refreshed_observation_time)
+Given('a cached forecast exists for my zipcode') do
+  Forecast.build(zipcode: 95014, data: initial_forecast_data, observed_at: initial_observation_time).save!
 end
 
-Given('a cached forecast exists for my zipcode') do
-  Forecast.build(zipcode: 95014, data: initial_forecast_data).save!
+Given(/the time is now a time when I would expect a (cached|refreshed) observation/) do |time|
+  freeze_at = time == 'cached' ? cached_observation_time : refreshed_observation_time
+  Timecop.freeze freeze_at
 end
 
 When('I go to the root page') do
@@ -18,24 +32,37 @@ When('I go to the root page') do
 end
 
 When(/I enter a legitimate (address|zipcode): "([^"]*)"/) do |_type, address|
-  load_stubs_of_external_calls
   within '#forecast_address' do
     fill_in with: address
   end
   click_on 'Get Forecast!'
 end
 
-Then(/I receive the observations for the (address|zipcode)/) do |_type|
+Then(/I receive the (initial|cached|refreshed) observations for the (address|zipcode)/) do |observation, _location|
   expect(page.status_code).to eq(200)
-  expect(page).to have_text('Current conditions for 95014')
-  expect(page).to have_text('Mostly Clear')
+  within '#current_conditions' do
+    case observation
+    when 'initial'
+      initial_observations
+    when 'cached'
+      cached_observations
+    when 'refreshed'
+      refreshed_observations
+    else
+      raise 'no such observation'
+    end
+  end
 end
 
-Then(/I receive the (cached|refreshed) observations for the zipcode/) do |cached_or_refreshed|
-  cached_or_refreshed == 'cached' ? cached_forecast_expectations :
+Then(/I receive the (initial|cached|refreshed) forecast for the (address|zipcode)/) do |observation, _type|
+  case observation
+  when 'initial'
+    initial_forecast_expectations
+  when 'cached'
+    cached_forecast_expectations
+  when 'refreshed'
     refreshed_forecast_expectations
-end
-
-Then(/I receive the forecast for the (address|zipcode)/) do |_type|
-  cached_forecast_expectations
+  else
+    raise 'no such observation'
+  end
 end

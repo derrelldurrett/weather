@@ -57,7 +57,7 @@ RSpec.describe "/forecasts", type: :request do
 
         before do
           Timecop.freeze(cached_observation_time)
-          Forecast.build(zipcode: 95014, data: initial_forecast_data).save!
+          Forecast.build(zipcode: 95014, data: initial_forecast_data, observed_at: initial_observation_time).save!
         end
 
         it " retrieves the cached forecast" do

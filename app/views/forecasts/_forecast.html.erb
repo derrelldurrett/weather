@@ -1,11 +1,11 @@
 <div id="<%= dom_id forecast %>">
 
-  <div>
+  <div id="current_conditions">
     <strong>Current conditions for <%= forecast.zipcode %>:</strong>
     <% if @current_conditions.present? or @current_conditions['conditions'] != '' %>
       <br>
       <% if forecast.cached %>
-        <p>From <%= time_ago_in_words @forecast.created_at %> ago</p>
+        <p>From <%= time_ago_in_words @forecast.observed_at %> ago</p>
       <% end %>
       <img src="<%= @current_conditions["icon"] %>" alt="Weather Icon">
       <p><strong>Current Conditions:</strong> <%= @current_conditions["conditions"] %></p>

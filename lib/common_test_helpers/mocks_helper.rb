@@ -29,7 +29,7 @@ module MocksHelper
   assign(:initial_observations_response) { build_response_from(200, initial_observations_response_file) }
   assign(:initial_forecast_data_file) { '95014_initial_forecast_data.json' }
   assign(:initial_forecast_data) { load_json_file(initial_forecast_data_file) }
-  assign(:refreshed_observations_response_file) { 'inital_observations.geojson' }
+  assign(:refreshed_observations_response_file) { 'refreshed_observations.geojson' }
   assign(:refreshed_observations_response) { build_response_from(200, refreshed_observations_response_file) }
   assign(:refreshed_forecast_data_file) { '95014_refreshed_forecast_data.json' }
   assign(:refreshed_forecast_data) { load_json_file(refreshed_forecast_data_file) }

@@ -16,7 +16,8 @@ module ForecastRetriever
       if forecast.nil?
         forecast = Forecast.new
         build_forecast(lat_long_zip, forecast)
-      elsif forecast.updated_at.before?(30.minutes.ago)
+      elsif forecast.observed_at.before?(30.minutes.ago)
+        forecast.cached = false
         build_forecast(lat_long_zip, forecast)
       else
         forecast.cached = true
@@ -31,6 +32,7 @@ module ForecastRetriever
     forecast_data = look_up_forecast(lat_long_zip)
     forecast.zipcode = lat_long_zip.fetch(:zip)
     forecast.data = forecast_data.to_json
+    forecast.observed_at = Time.now
   end
 
   def look_up_forecast(lat_long_zip)
